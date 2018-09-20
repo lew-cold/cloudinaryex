@@ -1,4 +1,9 @@
 defmodule Cloudinaryex do
+
+  @cloudinary_headers [
+    {"Content-Type", "application/x-www-form-urlencoded"},
+    {"Accept", "application/json"}
+  ]
   @doc """
   Uploads an image to Cloudinary. Expects the file to be a path to an image file on disk.
   """
@@ -13,7 +18,7 @@ defmodule Cloudinaryex do
     # TODO: If file is a binary (ie. not a path) save to a tmp file and then stream
     post_opts = build_upload_opts(config, file, options)
     api_url = "https://api.cloudinary.com/v1_1/#{config.cloud_name}/#{resource}/upload"
-    HTTPoison.post!(api_url, {:multipart, post_opts})
+    HTTPoison.request(api_url, {:multipart, post_opts}, @cloudinary_headers)
   end
 
   @doc """
