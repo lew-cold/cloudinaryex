@@ -18,7 +18,7 @@ defmodule Cloudinaryex do
     # TODO: If file is a binary (ie. not a path) save to a tmp file and then stream
     post_opts = build_upload_opts(config, file, options)
     api_url = "https://api.cloudinary.com/v1_1/#{config.cloud_name}/#{resource}/upload"
-    HTTPoison.request(api_url, {:multipart, post_opts}, @cloudinary_headers)
+    HTTPoison.request(:post, api_url, {:multipart, post_opts}, @cloudinary_headers)
   end
 
   @doc """
