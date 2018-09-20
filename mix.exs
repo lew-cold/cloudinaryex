@@ -34,7 +34,7 @@ defmodule Cloudinaryex.Mixfile do
   defp deps do
     [
       {:httpoison, "~> 1.0"},
-      {:poison, "~> 1.5.0"},
+      {:poison, "~> 3.1.0"},
       {:timex, "~> 1.0.0-rc4"}
     ]
   end
