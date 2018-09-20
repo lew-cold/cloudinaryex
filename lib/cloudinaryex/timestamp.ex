@@ -2,8 +2,8 @@ defmodule Cloudinaryex.Timestamp do
   use Timex
   
   def string_timestamp do
-    Time.now
-      |> Time.to_secs
+    Timex.now
+      |> Timex.to_gregorian_seconds
       |> Kernel.trunc
       |> to_string
   end
