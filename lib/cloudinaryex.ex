@@ -2,17 +2,17 @@ defmodule Cloudinaryex do
   @doc """
   Uploads an image to Cloudinary. Expects the file to be a path to an image file on disk.
   """
-  def upload(file, options \\ %{}) do
-    default_config() |> upload(file, options)
+  def upload(file, resource, options \\ %{}) do
+    default_config() |> upload(file, options, resource)
   end
 
   @doc """
   Uploads an image to Cloudinary. Expects the file to be a path to an image file on disk.
   """
-  def upload(config, file, options) do
+  def upload(config, file, options, resource) do
     # TODO: If file is a binary (ie. not a path) save to a tmp file and then stream
     post_opts = build_upload_opts(config, file, options)
-    api_url = "https://api.cloudinary.com/v1_1/#{config.cloud_name}/image/upload"
+    api_url = "https://api.cloudinary.com/v1_1/#{config.cloud_name}/#{resource}/upload"
     HTTPoison.post!(api_url, {:multipart, post_opts})
   end
 
@@ -37,8 +37,8 @@ defmodule Cloudinaryex do
   @doc """
   Deletes an image from Cloudinary.
   """
-  def delete(config, public_id) do
-    api_url = "https://api.cloudinary.com/v1_1/#{config.cloud_name}/image/destroy"
+  def delete(config, public_id, resource) do
+    api_url = "https://api.cloudinary.com/v1_1/#{config.cloud_name}/#{resource}/destroy"
     HTTPoison.post!(api_url, {:form, build_delete_opts(config, public_id)})
   end
 
