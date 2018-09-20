@@ -30,8 +30,8 @@ defmodule Cloudinaryex do
   @doc """
   Deletes an image from Cloudinary.
   """
-  def delete(public_id) do
-    default_config() |> delete(public_id)
+  def delete(public_id, resource) do
+    default_config() |> delete(public_id, resource)
   end
 
   @doc """
